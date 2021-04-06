@@ -16,6 +16,7 @@ function preload(){
 function setup() {
   createCanvas(600,600);
   
+P1=new Group();
 
   background = createSprite(0,0,300,300);
   background.addImage(backgroundImage);
@@ -27,7 +28,8 @@ function setup() {
   bow.scale=1.5
   
   
-for(var i=490;i<590;i=i+20){
+//red balloon
+  for(var i=490;i<590;i=i+20){
   red_balloon = createSprite(i,50, 1, 1);
   red_balloon.addImage(red_balloonImage);
   red_balloon.scale = 0.1
@@ -51,6 +53,13 @@ for(var i=230;i<470;i=i+20){
   green_balloon.addImage(green_balloonImage);
   green_balloon.scale = 0.1;
 }
+
+for(var i=210;i<420;i=i+20){
+  
+  green_balloon = createSprite(i,50, 10, 10);
+  green_balloon.addImage(green_balloonImage);
+  green_balloon.scale = 0.1;
+}
   
 for(var i=170;i<380;i=i+60){ 
   blue_balloon = createSprite(i,150, 10, 10);
@@ -59,9 +68,10 @@ for(var i=170;i<380;i=i+60){
 }
 
 for(var i=230;i<310;i=i+60){
-  pink_balloon = createSprite(i,180, 10, 10);
+  pink_balloon = createSprite(i,300, 10, 10);
   pink_balloon.addImage(pink_balloonImage);
   pink_balloon.scale = 1.2;
+  P1.add(pink_balloon)
 }
  
 }
@@ -72,15 +82,29 @@ function draw() {
 if (background.x < 0){
     background.x = 300 ;
   }
-   
+
   if(keyDown("space")){
- var rend=Math.round(random(1,4)) 
-if (rend==1){pink_balloon = createSprite(i,180, 10, 10);
-    pink_balloon.addImage(pink_balloonImage);}  
+ var rend=Math.round(random(1,1)) 
+if (rend==1){
+  pink = createSprite(300,500, 10, 10);
+  pink_balloon.depth=pink.depth+1;
+    pink.addImage(pink_balloonImage)
+    pink.velocityY= pink.velocityY-5;
 }
+
+      if(P1.isTouching(pink)){
+        P1.visible=false;
+    
+      }
+    
+  
+   
+  
+    
+  }  
+
 
  
   drawSprites();
-  
 }
 
